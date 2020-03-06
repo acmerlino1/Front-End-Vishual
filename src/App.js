@@ -73,10 +73,17 @@ class App extends Component {
   }
   render() {
     return (
-    <div className="App">
-      <a href='http://localhost:8888'>
-      <button>Login But With Spotify </button>
-      </a>
+    <div className="App">     
+      { (() => {
+          if (!this.state.loggedIn) {
+            return (
+              <a href='http://localhost:8888'>
+                <button>Login But With Spotify </button>
+              </a>
+            );
+          }
+        })()
+        }
       <div> Now Playing: { this.state.nowPlaying.name} </div>
       <div> By: { this.state.nowPlaying.artist} </div>
       <div> Id: { this.state.nowPlaying.id} </div>
