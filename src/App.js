@@ -75,7 +75,7 @@ class App extends Component {
     )
   }
   render() {
-    let login_link = process.env.PORT || 'http://localhost:8888'
+    let login_link = process.env.BACKEND_URI || 'http://localhost:8888'
     return (
       <div className="App">
         { (() => {
