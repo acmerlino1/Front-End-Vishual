@@ -75,6 +75,7 @@ class App extends Component {
     )
   }
   render() {
+    let login_link = process.env.PORT || 'http://localhost:8888'
     return (
       <div className="App">
         { (() => {
@@ -91,7 +92,7 @@ class App extends Component {
             <div>
               <h1>Please Login Using Spotify</h1>
               <br></br>
-              <a href='http://localhost:8888'>
+              <a href={login_link} >
                 <button>Login</button>
               </a>
             </div>
