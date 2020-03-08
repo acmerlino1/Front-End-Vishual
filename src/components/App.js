@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import AudioFeatures from './AudioFeatures';
+import UserFeatures from './UserFeatures'
 import Spotify from 'spotify-web-api-js';
 
 const spotifyWebApi = new Spotify();
@@ -24,6 +25,7 @@ class App extends Component {
       spotifyWebApi.setAccessToken(params.access_token)
     }
     localStorage.setItem("spotify_access_token", params.access_token);
+    localStorage.setItem("user_id", params.access_token);
 
     this.audioFeatures = React.createRef()
   }
@@ -96,6 +98,11 @@ class App extends Component {
                 <div>
                   <img src={ this.state.nowPlaying.image} style={{ width: 100}}/>
                 </div>
+                <UserFeatures
+                  ref={this.userFeatures}
+                  oAuth={this.state.oAuth}
+                />
+
                 <AudioFeatures
                  id={this.state.nowPlaying.id}
                  ref={this.audioFeatures}
@@ -113,6 +120,6 @@ class App extends Component {
     )
   }
 }
-console.log("YEEEHAAA", localStorage.getItem('sound_features'))
+console.log("YEEEHAAA", localStorage.getItem('user_id'))
 
 export default App;
