@@ -5,13 +5,14 @@ class Canvas extends Component {
   constructor(props) {
     super(props);
     this.state = {}
-    this.canvasRef = React.createRef();
   }
 
-  componentDidUpdate() {
-    const canvas = this.canvasRef.current;
-    console.log('other canvas', canvas)
-    const c = canvas.getContext('2d');
+  componentDidMount() {
+    this.setState({
+      canvas: this.props.canvas
+    })
+    console.log('other canvas', this.state.canvas)
+    const c = this.state.canvas.getContext('2d');
     const width = window.innerWidth;
     const height = window.innerHeight;
     //var x = Math.random() * window.innerWidth;
@@ -30,7 +31,7 @@ class Canvas extends Component {
 
   render() {
     return (
-      this.componentDidUpdate()
+      <h1>Canvas component</h1>
     )
   }
 }
