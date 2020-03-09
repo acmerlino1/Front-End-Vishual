@@ -31,13 +31,15 @@ class AudioFeatures extends Component {
   render() {
 
     const keyInteger = {0: 'C', 1: 'C♯/D♭', 2: 'D', 3: 'D♯/E♭', 4: 'E', 5: 'F', 6: 'F♯/G♭', 7: 'G', 8: 'G♯/A♭', 9: 'A', 10: 'A♯/B♭', 11: 'B'}
+    const getDancelevel = {0: 'low-danceability', 0.1: 'low-danceability', 0.2: 'low-danceability', 0.3: 'low-danceability', 0.4: 'mid-danceability', 0.5: 'mid-danceability', 0.6: 'mid-danceability', 0.7: 'high-danceability', 0.8: 'high-danceability', 0.9: 'high-danceability', 1.0: 'high-danceability'}
+
     if (!this.state.songFeatures) {
       return <div></div>
     }
     
     return (
     <div className="AudioFeatures">
-        <div> Selected song danceability: { parseFloat(this.state.songFeatures.danceability).toFixed(1) }</div>
+        <div> Selected song danceability: { getDancelevel[parseFloat(this.state.songFeatures.danceability).toFixed(1)] }</div>
         <div> Selected song key: { keyInteger[this.state.songFeatures.key] }</div>
         <div> Selected song time signature: { this.state.songFeatures.time_signature }</div>
         <div> Selected song duration: { this.state.songFeatures.duration_ms }</div>
