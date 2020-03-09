@@ -46,6 +46,14 @@ class AudioFeatures extends Component {
       }
     }
 
+    function setInstrumentalnessValue(getInstrumentalness) {
+      if (getInstrumentalness > .6) {
+        return "No Vocals"
+      } else {
+        return "Has Vocals"
+      }
+    }
+
     function millisToMinutesAndSeconds(getTimeDuration) {
       var minutes = Math.floor(getTimeDuration / 60000);
       var seconds = ((getTimeDuration % 60000) / 1000).toFixed(0);
@@ -65,7 +73,7 @@ class AudioFeatures extends Component {
         <div> Selected song energy: { getEnergylevel[parseFloat(this.state.songFeatures.energy).toFixed(1)] }</div>
         <div> Selected song tempo: { parseFloat(this.state.songFeatures.tempo).toFixed(0) } BPM</div>
         <div> Selected song acousticness: { this.state.songFeatures.acousticness }</div>
-        <div> Selected song instrumentalness: { this.state.songFeatures.instrumentalness }</div>
+        <div> Selected song instrumentalness: { setInstrumentalnessValue(this.state.songFeatures.instrumentalness) }</div>
         <div> Selected song valence: { getValencelevel[parseFloat(this.state.songFeatures.valence).toFixed(1)] }</div>
         <div> Selected song liveness: { getLivenessLevel[parseFloat(this.state.songFeatures.liveness).toFixed(1)] }</div>
         <div> Selected song loudness: { setLoudnessLevel(this.state.songFeatures.loudness) }</div>
