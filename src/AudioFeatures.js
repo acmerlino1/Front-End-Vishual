@@ -34,10 +34,10 @@ class AudioFeatures extends Component {
     if (!this.state.songFeatures) {
       return <div></div>
     }
+    
     return (
     <div className="AudioFeatures">
-        <div> Selected song danceability: { this.state.songFeatures.danceability }</div>
-
+        <div> Selected song danceability: { parseFloat(this.state.songFeatures.danceability).toFixed(1) }</div>
         <div> Selected song key: { keyInteger[this.state.songFeatures.key] }</div>
         <div> Selected song time signature: { this.state.songFeatures.time_signature }</div>
         <div> Selected song duration: { this.state.songFeatures.duration_ms }</div>
