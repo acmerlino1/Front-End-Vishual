@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import AudioFeatures from './AudioFeatures';
-import VisualizerInfo from './VisualizerInfo';
-import UserFeatures from './UserFeatures';
-import Animation from './Animation';
-
-// import PlayerController from './PlayerController'
 import Spotify from 'spotify-web-api-js';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'react-bootstrap';
 
 const spotifyWebApi = new Spotify();
 
 class App extends Component {
   constructor(){
     super();
-    const params = this.getHashParams();
+    const params = this.getHashParams();    
     this.state ={
       loggedIn: params.access_token !== undefined,
       nowPlaying: {
@@ -31,7 +24,6 @@ class App extends Component {
       spotifyWebApi.setAccessToken(params.access_token)
     }
     localStorage.setItem("spotify_access_token", params.access_token);
-    localStorage.setItem("user_id", params.access_token);
 
     this.audioFeatures = React.createRef()
   }
@@ -67,7 +59,7 @@ class App extends Component {
 
         }
         if (this.state.nowPlaying.id !== response.item.id) {
-          console.log('INITIAL RESPONCE APP.js', response)
+          console.log('response', response)
           this.setState({
             nowPlaying: {
               name: response.item.name,
@@ -83,35 +75,24 @@ class App extends Component {
     )
   }
   render() {
-    console.log("YEEEHAAA 2", AudioFeatures)
-    // console.log(JSON.stringify(sessionStorage.getItem('sound_features'))
     return (
       <div className="App">
         { (() => {
           if (this.state.loggedIn) {
             return (
-              <div className="logout-btn">
+              <div className="authentication">
                 <a href='https://accounts.spotify.com/en/logout '>
-                  <Button variant="outline-success" size="sm">
-                     Log out
-                    </Button>
+                  <button>Logout</button>
                 </a>
               </div>
             );
           } else {
           return (
             <div>
-            <div class="spotify">
-              <div class="bar bar-dark"></div>
-              <div class="bar bar-med"></div>
-              <div class="bar bar-light"></div>
-            </div>
               <h1>Please Login Using Spotify</h1>
               <br></br>
               <a href='http://localhost:8888'>
-                <Button variant="outline-success" size="lg">
-                   Login
-                  </Button>
+                <button>Login</button>
               </a>
             </div>
           );
@@ -120,33 +101,23 @@ class App extends Component {
     }
 
       { (() => {
-          if (this.state.loggedIn && this.state.nowPlaying.id) {
+          if (this.state.nowPlaying.id) {
 
             return (
               <div>
-                < Animation />
-                <div><h2>Now Playing:</h2> <h5>{ this.state.nowPlaying.name}, &nbsp;{ this.state.nowPlaying.artist}</h5></div>
+                <div> Now Playing: { this.state.nowPlaying.name} </div>
+                <div> By: { this.state.nowPlaying.artist} </div>
+                <div> Id: { this.state.nowPlaying.id} </div>
+                <div> Progress: { this.state.nowPlaying.progress} </div>
                 <div>
-                  <img src={ this.state.nowPlaying.image} style={{ width: 200}}/>
+                  <img src={ this.state.nowPlaying.image} style={{ width: 100}}/>
                 </div>
-
-                <UserFeatures
-                  ref={this.userFeatures}
-                  oAuth={this.state.oAuth}
+                <AudioFeatures
+                 id={this.state.nowPlaying.id}
+                 ref={this.audioFeatures}
+                 oAuth={this.state.oAuth}
                 />
-
-              <VisualizerInfo
-               id={this.state.nowPlaying.id}
-               ref={this.visInfo}
-               oAuth={this.state.oAuth}
-              />
-
-              <AudioFeatures
-               id={this.state.nowPlaying.id}
-               ref={this.audioFeatures}
-               oAuth={this.state.oAuth}
-              />
-             </div>
+              </div>
             );
           } else {
             return "No Playback detected";

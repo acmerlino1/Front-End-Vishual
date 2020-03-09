@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Animation from './Animation';
 
 class AudioFeatures extends Component {
   constructor(props) {
