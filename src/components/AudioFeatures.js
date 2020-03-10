@@ -14,6 +14,7 @@ class AudioFeatures extends Component {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + this.props.oAuth
       }
+
     })
     .then(response => response.json())
     .then(response => {
@@ -21,6 +22,7 @@ class AudioFeatures extends Component {
         track: track,
         songFeatures: response,
       })
+      console.log("FROM AUDIO")
     })
   }
 

@@ -42,7 +42,21 @@ class VisualizerInfo extends Component {
     }
     return (
     <div className="VisualizerInfo">
-     <div>   </div>
+     <div>   
+       <div>
+        <div id="dropzone">
+            <p>Drop an image</p>
+              <canvas id="canvas"></canvas>
+              <canvas id="_canvas"></canvas>
+             <p id="N"><label>number of slices:</label><input type="range" value="16" min="6" max="70" autocomplete="off" step="2"/>
+              <span>16</span>
+            </p>
+         </div>  
+
+
+        <img src={ this.state.nowPlaying.image} style={{ width: 200}} />
+      </div>
+     </div>
     </div>
     )
   }

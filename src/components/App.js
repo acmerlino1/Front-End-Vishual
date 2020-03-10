@@ -123,14 +123,16 @@ class App extends Component {
 
             return (
 
-              <div class="currently-playing">
+
+
+              <div className="currently-playing">
                 <div><h2>Now Playing:</h2> <h5>{ this.state.nowPlaying.name}, &nbsp;{ this.state.nowPlaying.artist}</h5></div>
                 <div>
                   <img src={ this.state.nowPlaying.image} style={{ width: 200}}/>
                 </div>
 
 
-                <div class="userwelcome">
+                <div className="userwelcome">
                   <UserFeatures
                     ref={this.userFeatures}
                     oAuth={this.state.oAuth}
@@ -142,7 +144,7 @@ class App extends Component {
                ref={this.visInfo}
                oAuth={this.state.oAuth}
               />
-              <div class="songinfo">
+              <div className="songinfo">
                 <AudioFeatures
                 id={this.state.nowPlaying.id}
                 ref={this.audioFeatures}
