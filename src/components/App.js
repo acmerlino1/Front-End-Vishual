@@ -122,7 +122,15 @@ class App extends Component {
           if (this.state.loggedIn && this.state.nowPlaying.id) {
 
             return (
-
+               <div className="VisualizerInfo">
+                <div className="App-header">
+                  <img src={logo} className="App-logo" alt="logo" />
+                  <h1> Some collisions <h1>
+                 </div>
+                 <div className="App-intro">
+                   <collisions width={800} height={600} />
+                  </div>
+                </div>
 
 
               <div className="currently-playing">
