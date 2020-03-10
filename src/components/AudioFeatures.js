@@ -40,11 +40,11 @@ class AudioFeatures extends Component {
 
     function setLoudnessLevel(getLoudnesStat) {
       if (getLoudnesStat < -35 ){
-        return "Quiet"
+        return "It's Quiet"
       } else if (getLoudnesStat > -35 && getLoudnesStat < -15) {
-        return "Moderate"
+        return "It shouldn't hurt your ears "
       } else {
-        return "Loud"
+        return "It's Loud"
       }
     }
 
@@ -71,59 +71,59 @@ class AudioFeatures extends Component {
     <div className="AudioFeatures">
       <ButtonGroup vertical>
         <OverlayTrigger
-        key='top'
+        key='Danceability'
         overlay={<Tooltip> The danceability of this song is {this.state.songFeatures.danceability*100}%</Tooltip>}>
         <Button variant='outline-light'>Danceability: { getDancelevel[parseFloat(this.state.songFeatures.danceability).toFixed(1)] }</Button>
         </OverlayTrigger>
         <OverlayTrigger
-        key='top'
+        key='Key'
         overlay={<Tooltip>The song is written in the {keyInteger[this.state.songFeatures.key]} key</Tooltip>}>
         <Button variant='outline-light'> Key: { keyInteger[this.state.songFeatures.key] }</Button>
         </OverlayTrigger>
         <OverlayTrigger
-        key='top'
+        key='Time_signature'
         overlay={<Tooltip>There are {this.state.songFeatures.time_signature} beats in each bar</Tooltip>}>
         <Button variant='outline-light'> Time signature: { this.state.songFeatures.time_signature }</Button>
         </OverlayTrigger>
         <OverlayTrigger
-        key='top'
+        key='Duration'
         overlay={<Tooltip>This song is exactly {this.state.songFeatures.duration_ms} milliseconds long</Tooltip>}>
         <Button variant='outline-light'> Duration: { millisToMinutesAndSeconds(this.state.songFeatures.duration_ms) }</Button>
         </OverlayTrigger>
         <OverlayTrigger
-        key='top'
+        key='Energy'
         overlay={<Tooltip>Spotify says this is {this.state.songFeatures.energy*100}% energetic</Tooltip>}>
         <Button variant='outline-light'> Energy: { getEnergylevel[parseFloat(this.state.songFeatures.energy).toFixed(1)] } </Button>
         </OverlayTrigger>
         <OverlayTrigger
-        key='top'
+        key='Tempo'
         overlay={<Tooltip>The Tempo for the song is {this.state.songFeatures.tempo}</Tooltip>}>
         <Button variant='outline-light'> BPM: { parseFloat(this.state.songFeatures.tempo).toFixed(0) } </Button>
         </OverlayTrigger>
         <OverlayTrigger
-        key='top'
+        key='Acousticness'
         overlay={<Tooltip>There is a {this.state.songFeatures.acousticness*100}% chance that this song is acoustic</Tooltip>}>
         <Button variant='outline-light'> Acousticness: { this.state.songFeatures.acousticness }</Button>
         </OverlayTrigger>
         <OverlayTrigger
-        key='top'
+        key='Instrumentalness'
         overlay={<Tooltip>There is a {this.state.songFeatures.instrumentalness*100}% chance of not having vocals</Tooltip>}>
         <Button variant='outline-light'> Instrumentalness: { setInstrumentalnessValue(this.state.songFeatures.instrumentalness) }</Button>
         </OverlayTrigger>
         <OverlayTrigger
-        key='top'
+        key='Valence'
         overlay={<Tooltip>Spotify says this is {this.state.songFeatures.valence*100}% positive</Tooltip>}>
         <Button variant='outline-light'> Valence: { getValencelevel[parseFloat(this.state.songFeatures.valence).toFixed(1)] }</Button>
         </OverlayTrigger>
         <OverlayTrigger
-        key='top'
+        key='Liveness'
         overlay={<Tooltip>There is a {this.state.songFeatures.liveness*100}% chance that this is live</Tooltip>}>
         <Button variant='outline-light'> Liveness: { getLivenessLevel[parseFloat(this.state.songFeatures.liveness).toFixed(1)] }</Button>
         </OverlayTrigger>
         <OverlayTrigger
-        key='top'
+        key='Loudness'
         overlay={<Tooltip>This track is mastered at {(this.state.songFeatures.loudness)+60}dB</Tooltip>}>
-        <Button variant='outline-light'> Loudness: { setLoudnessLevel(this.state.songFeatures.loudness) }</Button>
+        <Button variant='outline-light'> { setLoudnessLevel(this.state.songFeatures.loudness) }</Button>
         </OverlayTrigger>
       </ButtonGroup>
     </div>

@@ -5,6 +5,7 @@ import AudioFeatures from "./AudioFeatures";
 import Visualizer from "./Visualizer";
 import UserFeatures from "./UserFeatures";
 import { BrowserRouter as Router } from "react-router-dom";
+import PlayPause from "./PlayPause";
 
 // import PlayerController from './PlayerController'
 import Spotify from "spotify-web-api-js";
@@ -112,8 +113,8 @@ class App extends Component {
             );
           } else {
             return (
-              <div class ="spotifybutton">
-                <div class="spotify">
+              <div className="spotifybutton">
+                <div className="spotify">
                   <div class="bar bar-dark"></div>
                   <div class="bar bar-med"></div>
                   <div class="bar bar-light"></div>
@@ -132,7 +133,7 @@ class App extends Component {
         {(() => {
           if (this.state.loggedIn && this.state.nowPlaying.id) {
             return (
-              <div class="currently-playing">
+              <div className="currently-playing">
                 <div className="now-playing">
                   <h2>Now Playing:</h2>
                   <h5>
@@ -148,7 +149,13 @@ class App extends Component {
                     style={{ width: 200 }}
                   />
                 </div>
-
+                <PlayPause/>
+                {/* <div className="playpausebutton">
+                  <img ref={this.playpausebutton}
+                    src={require("../playpause.png")}
+                    style={{width: 40}}
+                  />
+                </div> */}
                 <div class="userwelcome">
                   <UserFeatures
                     ref={this.userFeatures}
@@ -167,7 +174,7 @@ class App extends Component {
             );
           } else {
             if (this.state.loggedIn) {
-              return <div class="no-playback"><h1>No Playback detected</h1></div>;
+              return <div className="no-playback"><h1>No Playback detected</h1></div>;
             }
           }
         })()}
