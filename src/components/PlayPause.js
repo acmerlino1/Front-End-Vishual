@@ -70,13 +70,21 @@ class PlayPause extends Component {
     this.setState({ scriptLoaded: true});
     console.log("Script loaded");
   }
-    // // On click pause 
-    // document.getElementById("playpausebutton").onclick = () => {
-    // player.nextTrack().then(() => {
-    //   console.log('Skipped to next track!');
-    // });
-    // }
-  
+
+  // On click pause 
+  pause() {
+    console.log("Inside pause function");
+    const token = `${localStorage.getItem('spotify_access_token')}`;;
+    const player = new window.Spotify.Player({
+      name: 'Web Playback SDK Quick Start Player',
+      getOAuthToken: cb => { cb(token); }
+    });
+    console.dir(player)
+    player.connect()
+    player.pause() 
+    console.log("YEP WE STILL playing?")
+    // this is far as i got and now it does nothing
+  }
 
 
   imageClick = () => {
@@ -92,13 +100,13 @@ class PlayPause extends Component {
           onError={this.handleScriptError.bind(this)}
           onLoad={this.handleScriptLoad.bind(this)}
         />
+        <div className="playpausebutton">
+         <img ref={this.playpausebutton}
+          src={require("../playpause.png")}
+          style={{width: 40}}
+          onClick={this.pause}/>
+        </div>
       </React.Fragment>
-      // <div className="playpausebutton">
-      //   <img ref={this.playpausebutton}
-      //     src={require("../playpause.png")}
-      //     style={{width: 40}}
-      //     onClick={this.imageClick}/>
-      // </div>
     );
   }
 }
