@@ -32,17 +32,14 @@ const helpers = {
     
       if (hexString.length == 6){
         let new_hex = '#'+ hexString
-        console.log("new_hex", new_hex)
         colorArray.push(new_hex)
-        console.log("colourArray",colorArray)}
+      }
       else if (hexString.length == 5) {
         let new_hex = '#'+ hexString + 'F'
-        console.log("new_hex", new_hex)
         colorArray.pop()
         colorArray.push(new_hex)
-        console.log("colourArray",colorArray)
       }
-      }
+    }
     circleArray = [];
     for (var i = 0; i < energy; i++) {
       var radius = Math.random() * tempo + 1;
