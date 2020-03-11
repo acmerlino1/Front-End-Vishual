@@ -40,9 +40,24 @@
     <!-- <h1>Please Login Using Spotify</h1> -->
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <canvas>
-      
-    </canvas>
+
+
+    
+<div id="dropzone">
+  <p>Drop an image</p>
+  <!--https://developer.mozilla.org/en/docs/Using_files_from_web_applications-->
+  <canvas id="canvas"></canvas>
+  <canvas id="_canvas"></canvas>
+  <p id="N"><label>number of slices:</label><input type="range" value="16" min="6" max="70" autocomplete="off" step="2"><span>16</span>
+  </p>
+  
+</div>
+
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/222579/jordi-petit.jpg" width="383" height="500" />
+
+
+
+
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script>window.onSpotifyWebPlaybackSDKReady = () => {
     const token = `${localStorage.getItem('spotify_access_token')}`;

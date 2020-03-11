@@ -1,99 +1,61 @@
+const defaults = require('lodash.defaults')
 
-var canvas = document.querySelector('canvas');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-var c = canvas.getContext("2d");
+module.exports = function (canvas, opts) {
+  const isCanvas = /canvas/i.test(Object.prototype.toString.call(canvas))
+  if (!isCanvas) throw new TypeError('first param is not canvas')
 
-var circleArray = []
+  const context = this.context = canvas.getContext('2d')
 
+  opts = defaults(opts, require('./defaults'))
 
+  opts.slices = opts.slices % 2 ? opts.slices + 1 : opts.slices
 
-const helpers = {
+  // these need to be exposed
+  this.offsetX = opts.offsetX
+  this.offsetY = opts.offsetY
+  this.offsetRotation = opts.offsetRotation
+  this.canvas = canvas
+  this.className = opts.className
+  this.radius = opts.radius
+  this.slices = opts.slices
+  this.style = opts.style
 
-  init: function() {
-
-    for (var i = 0; i < 10; i++){
-      var radius = Math.random() * 7 + 1;
-      var x = Math.random() * (window.innerWidth - radius * 2) + radius;
-      var y = Math.random() * (window.innerHeight - radius * 2) + radius;
-      var dx = (Math.random() - 0.5) * 9;
-      var dy = (Math.random() - 0.5) * 9;
-  
-      circleArray.push(new this.MovingCircle(x,y,dx,dy,radius));
-
-
+  this.initialize = function () {
+    if (opts.style) {
+      canvas.style.marginLeft = -opts.radius + 'px'
+      canvas.style.marginTop = -opts.radius + 'px'
     }
-    console.log("CIRCLE",circleArray)
-    // c.beginPath();
-    // c.arc(x, y, 30, 0, Math.PI * 2, false);
-    // c.strokeStyle = `rgba(${red}, ${green}, ${blue}, 0.8)`;
-    // c.stroke();
+    if (this.className) canvas.setAttribute('class', this.className)
+    canvas.width = canvas.height = opts.radius * 2
+    context.fillStyle = context.createPattern(opts.src, 'repeat')
+    this.draw()
+  }
 
-  },
+  this.draw = function () {
+    const step = (Math.PI * 2) / this.slices
+    const cx = opts.src.width / 2
+    const width = opts.src.width || opts.src.videoWidth
+    const height = opts.src.height || opts.src.videoHeight
+    const scale = opts.zoom * (opts.radius / Math.min(width, height))
+    for (let i = 0; i < this.slices; i++) {
+      context.save()
+      context.translate(this.radius, this.radius)
+      context.rotate(i * step)
+      context.beginPath()
+      context.moveTo(-0.5, -0.5)
+      context.arc(0, 0, this.radius, step * -0.51, step * 0.51)
+      context.lineTo(0.5, 0.5)
+      context.closePath()
+      context.rotate(Math.PI / 2)
+      context.scale(scale, scale)
+      context.scale([-1, 1][i % 2], 1)
+      context.translate(this.offsetX - cx, this.offsetY)
+      context.rotate(this.offsetRotation)
+      context.scale(opts.offsetScale, opts.offsetScale)
+      context.fill()
+      context.restore()
+    }
+  }
 
-  returnCircleArray: function(){
-    return circleArray;
-  },
-
- // multiply: function(){
- //   console.log(i)
- //    for(var i = 0; i < 100; i++) {
- //    this.init();
- //    }
- //  },
-
-
-  MovingCircle: function(x,y,dx,dy,radius){
-    this.x = x;
-    this.y = y;
-    this.dx = dx;
-    this.dy = dy;
-    this.radius = radius;
-    this.minRadius = radius;
-    this.color = "red";
-
-    this.draw = function() {
-      c.beginPath();
-      c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-      c.fill();
-      c.fillStyle = "red";
-    };
-
-    this.update = function() {
-      if (this.x + this.radius > window.innerWidth || this.x - this.radius < 0) {
-        this.dx = -this.dx;
-      }
-      if (this.y + this.radius > window.innerHeight || this.y - this.radius < 0) {
-        this.dy = -this.dy;
-      }
-      this.x += this.dx;
-      this.y += this.dy;
-    };
-   this.draw()
-   },
-
-    
-
-    
-
-      
- }
-
- var animate = function(){
-  var animationFrameHandle;
-  var animationInterval = setInterval(function() {
-    cancelAnimationFrame(animationFrameHandle)
-    animationFrameHandle = requestAnimationFrame(function() {
-     for (var i = 0; i < circleArray.length; i++){
-       circleArray[i].update();
-     }
-    })
-  }, 100)
+  return this
 }
-
-animate()
-
-
-
-
-export default helpers;
