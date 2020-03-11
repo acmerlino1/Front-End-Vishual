@@ -5,11 +5,12 @@ import AudioFeatures from "./AudioFeatures";
 // import Visualizer from "./Visualizer";
 import UserFeatures from "./UserFeatures";
 import { BrowserRouter as Router } from "react-router-dom";
+import SpPlayer from "./SpPlayer";
 
 // import PlayerController from './PlayerController'
 import Spotify from "spotify-web-api-js";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "react-bootstrap";
+import { Button, OverlayTrigger } from "react-bootstrap";
 
 const spotifyWebApi = new Spotify();
 
@@ -36,6 +37,7 @@ class App extends Component {
 
     this.audioFeatures = React.createRef();
   }
+  
 
   componentDidMount() {
     this.Interval = setInterval(() => this.getNowPlaying(), 5000);
@@ -97,6 +99,8 @@ class App extends Component {
 
     return (
       <div className="App">
+
+        <Visualizer/>
         {(() => {
           if (this.state.loggedIn) {
             return (
@@ -110,15 +114,15 @@ class App extends Component {
             );
           } else {
             return (
-              <div>
-                <div class="spotify">
+              <div className="spotifybutton">
+                <div className="spotify">
                   <div class="bar bar-dark"></div>
                   <div class="bar bar-med"></div>
                   <div class="bar bar-light"></div>
                 </div>
                 <h1>Please Login Using Spotify</h1>
                 <br></br>
-                <a href="http://localhost:8888">
+                <a href="http://localhost:8888/login">
                   <Button variant="outline-success" size="lg">
                     Login
                   </Button>
@@ -127,24 +131,32 @@ class App extends Component {
             );
           }
         })()}
-
         {(() => {
           if (this.state.loggedIn && this.state.nowPlaying.id) {
             return (
-              <div class="currently-playing">
-                <div>
+              <div className="currently-playing">
+                <div className="now-playing">
                   <h2>Now Playing:</h2>
                   <h5>
-                    {this.state.nowPlaying.name}, {this.state.nowPlaying.artist}
+                    {this.state.nowPlaying.name} 
+                    <h5>
+                    {this.state.nowPlaying.artist}
+                    </h5>
                   </h5>
                 </div>
-                <div>
+                <div className="nowplayingimage">
                   <img
                     src={this.state.nowPlaying.image}
                     style={{ width: 200 }}
                   />
                 </div>
-
+                <SpPlayer/>
+                {/* <div className="playpausebutton">
+                  <img ref={this.playpausebutton}
+                    src={require("../playpause.png")}
+                    style={{width: 40}}
+                  />
+                </div> */}
                 <div class="userwelcome">
                   <UserFeatures
                     ref={this.userFeatures}
@@ -163,7 +175,7 @@ class App extends Component {
             );
           } else {
             if (this.state.loggedIn) {
-              return "No Playback detected";
+              return <div className="no-playback"><h1>No Playback detected</h1></div>;
             }
           }
         })()}

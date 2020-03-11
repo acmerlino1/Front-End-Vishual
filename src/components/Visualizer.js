@@ -31,6 +31,7 @@ class Visualizer extends Component {
   }
 
   componentDidMount() {
+    
     this.applyCache();
 
     setInterval(() => {
@@ -41,6 +42,7 @@ class Visualizer extends Component {
       }
       this.setState({
         circleArray: circleArray
+
       });
     }, 50);
   }

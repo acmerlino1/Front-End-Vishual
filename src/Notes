@@ -1,0 +1,27 @@
+Notes
+
+What did I do?
+
+Move the SDK into a component
+
+Why?
+
+Because I wanted to perform functions on the buttons so that I can 
+play/pause however that can only be done by accessing the ID of what I should 
+be grapping (which you cannot find the normal way?)
+
+So now my issue is that I have pulled in the info but I cannot access it as 
+it will just error out on click (because I have to make a new
+instance of the player)
+
+So what do I need help with
+- Well it looks better to have the info inside a component
+- But if I was to take it out of a component and back into pure JS in
+  the index.html how would I find the id of the image (so that it would
+  register the click)
+- Or if I was to keep it in what way could I access the methods to update
+  the SDK call?
+  I was thinking localstorage to keep the OAuthToken however i don't have 
+  a clue how this works....So ask Lucian 
+- UPDATE now it does not error yet nothing happens i.e it does not actually
+  DO anything...it just doesnt break so thats better right?
