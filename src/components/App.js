@@ -5,7 +5,7 @@ import AudioFeatures from "./AudioFeatures";
 import Visualizer from "./Visualizer";
 import UserFeatures from "./UserFeatures";
 import { BrowserRouter as Router } from "react-router-dom";
-import PlayPause from "./PlayPause";
+import SpPlayer from "./SpPlayer";
 
 // import PlayerController from './PlayerController'
 import Spotify from "spotify-web-api-js";
@@ -149,7 +149,7 @@ class App extends Component {
                     style={{ width: 200 }}
                   />
                 </div>
-                <PlayPause/>
+                <SpPlayer/>
                 {/* <div className="playpausebutton">
                   <img ref={this.playpausebutton}
                     src={require("../playpause.png")}

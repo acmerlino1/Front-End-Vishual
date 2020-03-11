@@ -3,7 +3,7 @@ import Script from 'react-load-script';
 import './App.css';
 
 
-class PlayPause extends Component {
+class SpPlayer extends Component {
 
   constructor(props) {
     super(props);
@@ -26,8 +26,9 @@ class PlayPause extends Component {
       name: 'Web Playback SDK Quick Start Player',
       getOAuthToken: cb => { cb(token); }
     });
-    console.log(player);
+    console.log("this is the playa data",player);
 
+    localStorage.setItem('player', player)
     // Error handling
     player.addListener('initialization_error', ({ message }) => { console.error(message); });
     player.addListener('authentication_error', ({ message }) => { console.error(message); });
@@ -49,12 +50,26 @@ class PlayPause extends Component {
 
     // Connect to the player!
     player.connect();
+
+  }
+
+  player = `${localStorage.getItem('player')}`
+
+  seeIfItsThere() {
+    console.log("Script loaded");
+    const token = `${localStorage.getItem('spotify_access_token')}`;;
+    const player = new window.Spotify.Player({
+      name: 'Web Playback SDK Quick Start Player',
+      getOAuthToken: cb => { cb(token); }
+    });
+    player.togglePlay() 
+    console.log("YEP WE STILL playing?")
+    // this is far as i got and now it does nothing
   }
 
   cb(token) {
     return(token);
   }
-
 
   handleScriptCreate() {
     this.setState({ scriptLoaded: false });
@@ -82,6 +97,7 @@ class PlayPause extends Component {
   imageClick = () => {
     console.log('Click!!!!');
   }
+  // this is just to check that I can call it this way 
 
   render () {
     return (
@@ -92,15 +108,15 @@ class PlayPause extends Component {
           onError={this.handleScriptError.bind(this)}
           onLoad={this.handleScriptLoad.bind(this)}
         />
+        <div className="playpausebutton">
+         <img ref={this.playpausebutton}
+          src={require("../playpause.png")}
+          style={{width: 40}}
+          onClick={this.seeIfItsThere}/>
+        </div>
       </React.Fragment>
-      // <div className="playpausebutton">
-      //   <img ref={this.playpausebutton}
-      //     src={require("../playpause.png")}
-      //     style={{width: 40}}
-      //     onClick={this.imageClick}/>
-      // </div>
     );
   }
 }
 
-export default PlayPause;
+export default SpPlayer;
