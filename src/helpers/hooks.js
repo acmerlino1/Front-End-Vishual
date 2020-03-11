@@ -25,28 +25,26 @@ var colorArray = ["#FF8200", "#FF9300", "#FFC018", "#F28627", "#F26B1D"];
 const helpers = {
   init: function(key, danceability, energy, tempo, duration_ms) {
     var duration = duration_ms
-    console.log("duration", duration)
     if (duration !== undefined){
-      var hexString = duration.toString(16)
-      console.log("hexstring", hexString)
-    
+      var hexString = duration.toString(16)    
       if (hexString.length == 6){
         let new_hex = '#'+ hexString
+        // colorArray.pop()
         colorArray.push(new_hex)
       }
       else if (hexString.length == 5) {
         let new_hex = '#'+ hexString + 'F'
-        colorArray.pop()
+        // colorArray.pop()
         colorArray.push(new_hex)
       }
     }
     circleArray = [];
-    for (var i = 0; i < energy; i++) {
-      var radius = Math.random() * tempo + 1;
+    for (var i = 0; i < 1000; i++) {
+      var radius = Math.random() * (key) + 1;
       var x = Math.random() * (window.innerWidth - radius * 2) + radius;
       var y = Math.random() * (window.innerHeight - radius * 2) + radius;
-      var dx = (Math.random() - 0.5) * danceability;
-      var dy = (Math.random() - 0.5) * danceability;
+      var dx = (Math.random() - 0.5) * tempo;
+      var dy = (Math.random() - 0.5) * tempo;
 
       circleArray.push(new this.MovingCircle(x, y, dx, dy, radius));
     }

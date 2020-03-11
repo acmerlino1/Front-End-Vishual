@@ -309,7 +309,7 @@ class AudioFeatures extends Component {
           >
             <Button variant="outline-light">
               {" "}
-              Loudness: {setLoudnessLevel(this.state.songFeatures.loudness)}
+              This is at a {setLoudnessLevel(this.state.songFeatures.loudness)} volume
             </Button>
           </OverlayTrigger>
         </ButtonGroup>
