@@ -31,8 +31,6 @@ body {
   width: 100%;
   top: 50px;
   
-  
-  
 }
 
 .logout-btn {
@@ -42,11 +40,11 @@ body {
 }
 
 .songinfo {
+  z-index: 1;
   position: fixed;
-  right: -20px;
-  top: 30px;
-  text-align: right;
-  z-index: inherit;
+  left: 0px;
+  bottom: 0px;
+  text-align: center;
 }
 
 .currently-playing {
