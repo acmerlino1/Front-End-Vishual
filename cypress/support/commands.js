@@ -23,30 +23,30 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-Cypress.Commands.add("getToken", () => {
-  Cypress.log({
-    name: "getTokenFromSpotifyAPI"
-  });
-  const auth =
-    localStorage.getItem('spotify_access_token');
+// Cypress.Commands.add("getToken", () => {
+//   Cypress.log({
+//     name: "getTokenFromSpotifyAPI"
+//   });
+//   const auth =
+//     localStorage.getItem('spotify_access_token');
 
-  const options = {
-    method: "POST",
-    url: "https://accounts.spotify.com/api/token",
-    form: true,
-    body: {
-      grant_type: "client_credentials"
-    },
-    headers: {
-      Authorization: auth
-    }
-  };
+//   const options = {
+//     method: "POST",
+//     url: "https://accounts.spotify.com/api/token",
+//     form: true,
+//     body: {
+//       grant_type: "client_credentials"
+//     },
+//     headers: {
+//       Authorization: auth
+//     }
+//   };
 
-  cy.request(options).then(resp => {
-    localStorage.setItem("token", resp.body.access_token);
-    return resp.body.access_token;
-  });
-});
+//   cy.request(options).then(resp => {
+//     localStorage.setItem("token", resp.body.access_token);
+//     return resp.body.access_token;
+//   });
+// });
 
 
 

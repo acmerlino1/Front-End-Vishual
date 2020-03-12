@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import "./App.css";
 import AudioFeatures from "./AudioFeatures";
-// import Visualizer from "./Visualizer";
-import UserFeatures from "./UserFeatures";
+import UserFeatures from  "./UserFeatures"
+import Toggle from './Toggle';
 import { BrowserRouter as Router } from "react-router-dom";
 
 // import PlayerController from './PlayerController'
@@ -136,7 +136,7 @@ class App extends Component {
             return (
 
     
-
+             <Toggle>
               <div className="currently-playing">
                 <div className="now-playing">
 
@@ -148,6 +148,7 @@ class App extends Component {
                     </h5>
                   </h5>
                 </div>
+              </Toggle>
 
                 <div className="nowplayingimage">
                   <img alt="Album Art Work"
