@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import "./App.css";
 import AudioFeatures from "./AudioFeatures";
+// import Alert from 'react-bootstrap/Alert';
 import UserFeatures from  "./UserFeatures"
 import Toggle from './Toggle';
 import { BrowserRouter as Router } from "react-router-dom";
@@ -135,8 +136,10 @@ class App extends Component {
           if (this.state.loggedIn && this.state.nowPlaying.id) {
             return (
 
-    
-             <Toggle>
+
+     
+  
+   
               <div className="currently-playing">
                 <div className="now-playing">
 
@@ -148,7 +151,17 @@ class App extends Component {
                     </h5>
                   </h5>
                 </div>
-              </Toggle>
+
+            <div>    
+           <Toggle
+            render={() => (
+              <div>
+                <h1>ShowMe</h1>
+                <button>Show/hide</button>
+               </div>
+              )}
+             />
+            </div>
 
                 <div className="nowplayingimage">
                   <img alt="Album Art Work"
