@@ -27,6 +27,10 @@ $ npm start
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Please also follow directions for running the back end server, found in the [Back-End-Vishual](https://github.com/acmerlino1/Back-End-Vishual) README.
+Please also follow directions for running the back end server, found in the [Back-End-Vishual](https://github.com/acmerlino1/Back-End-Vishual) README. In the project directory, you can run: node authorizationcode/app.js
 
-In the project directory, you can run: node authorizationcode/app.js
+## The Visualiser
+
+Image of app being run, and React components highlighted.
+
+![image](https://github.com/acmerlino1/Front-End-Vishual/blob/master/public/images/screenshot_2020-03-11_at_15.56.46.png)
